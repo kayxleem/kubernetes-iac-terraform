@@ -10,6 +10,8 @@ Ensure that you have the following tools installed locally:
 2. [kubectl](https://Kubernetes.io/docs/tasks/tools/)
 3. [terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
+3. [helm](Helmhttps://helm.sh)
+
 
 ## Deploy
 
@@ -44,6 +46,69 @@ The following command will update the `kubeconfig` on your local machine and all
     ```
 
 
+
+1. configure your acme-issuer for ssl
+
+    ```sh
+    kubectl apply -f deployments/ssl/acme-issuer.yaml
+    
+    ```
+
+## Deploy socks shop
+
+1. Run the deployment
+
+    ```sh
+    kubectl apply -f deployments/sockshop/socksshopdeploy.yaml
+    
+    ```
+
+
+2. (Optional) Configure monitoring for your socks shop with the instrucion in the [manifests-monitoring](deployment/sockshop/manifests-monitoring/).
+
+3. (Optional) Configure Ingress for your deployment
+
+    ```sh
+    kubectl apply -f deployments/sockshop/sockshopingress.yaml
+    
+    ```
+[![Screenshot of socks homepage](/screenshots/socksshop.png)](/screenshots/socksshop.png)
+
+## Deploy MongoDB APP
+
+1. Run the deployment
+
+    ```sh
+    kubectl apply -f deployments/mongoexpress/mongo-secret.yaml
+    kubectl apply -f deployments/mongoexpress/mongo.yaml
+    kubectl apply -f deployments/mongoexpress/mongo-configmap.yaml
+    kubectl apply -f deployments/mongoexpress/mongo-express.yaml
+    
+    ```
+
+2. (Optional) Configure Ingress for your deployment
+
+    ```sh
+    kubectl apply -f deployments/ingress/sockshopingress.yaml
+    
+    ```
+
+# monitoring and logging
+
+1. Deploy prometheus stack to access grafana
+
+    ```sh
+helm install prometheus prometheus-community/kube-prometheus-stack
+    
+    ```
+2. (Optional) Configure Ingress for your deployment
+
+    ```sh
+    kubectl apply -f deployments/ingress/grafanaingress.yaml
+    
+    ```
+
+[![Screenshot of Grafana](/screenshots/graffanadashboard.png)](/screenshots/graffanadashboard.png)
 
 ## Destroy
 
