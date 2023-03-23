@@ -108,7 +108,28 @@ helm install prometheus prometheus-community/kube-prometheus-stack
     
     ```
 
+
 [![Screenshot of Grafana](/screenshots/graffanadashboard.png)](/screenshots/graffanadashboard.png)
+
+# CI CD
+
+This configuration also sets up a Jenkins server that you can use to set up your CICD Pipeline. 
+
+
+## Set up Jenkins
+
+Access and set up your jenking server from the IP created at port 8000
+
+
+## Set up your Credentials on Jenkins.
+
+Add the neccesary credentials 
+
+## Set up Jenkins to run the jenkins file on this repo. 
+
+You can customise the provide sample jenkin file according to your deployment requirements and create your deployment pipeline on jenkins 
+
+[![Screenshot of Deployment](/screenshots/samplepipelinesuccess.jpg)](/screenshots/samplepipelinesuccess.jpg)
 
 ## Destroy
 
